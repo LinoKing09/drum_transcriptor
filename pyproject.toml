@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "drum-transcriptor"
+version = "0.1.0"
+description = "Transkribiert das Schlagzeug eines Songs (YouTube-Link oder Audiodatei) als PDF-Noten"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "scipy",
+  "librosa>=0.10",
+  "soundfile",
+  "yt-dlp",
+  "flask>=3",
+  "demucs>=4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest", "mido", "matplotlib"]
+
+[project.scripts]
+drum-transcriptor = "drum_transcriptor.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["drum_transcriptor*"]
+
+[tool.setuptools.package-data]
+drum_transcriptor = ["templates.npz"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
